@@ -1,0 +1,161 @@
+V "GNAT Lib v2018"
+M P W=b
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DELAY
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_FIXED_POINT
+RV NO_IO
+RV NO_RELATIVE_DELAY
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_TASK_HIERARCHY
+RV NO_TASKING
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+RV SPARK_05
+RV MAX_TASKS=1+
+
+U skrzyzowanie%b	skrzyzowanie.adb	7472f28c NE OO SU
+W ada%s			ada.ads			ada.ali
+Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.characters%s	a-charac.ads		a-charac.ali
+W ada.characters.handling%s  a-chahan.adb	a-chahan.ali
+Z ada.real_time%s	a-reatim.adb		a-reatim.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.fixed%s	a-strfix.adb		a-strfix.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W nt_console%s		nt_console.adb		nt_console.ali
+Z system%s		system.ads		system.ali
+Z system.parameters%s	s-parame.adb		s-parame.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+
+D ada.ads		20180524051736 76789da1 ada%s
+D a-calend.ads		20180524051738 372815c8 ada.calendar%s
+D a-caldel.ads		20180524051736 9f20b83d ada.calendar.delays%s
+D a-charac.ads		20180524051736 2d3ec45b ada.characters%s
+D a-chahan.ads		20180524051736 1601a50f ada.characters.handling%s
+D a-chlat1.ads		20180524051736 66457d31 ada.characters.latin_1%s
+D a-except.ads		20180524051736 291912d5 ada.exceptions%s
+D a-ioexce.ads		20180524051736 e4a01f64 ada.io_exceptions%s
+D a-reatim.ads		20180524051738 0240fc73 ada.real_time%s
+D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
+D a-string.ads		20180524051736 90ac6797 ada.strings%s
+D a-strfix.ads		20180524051738 d07c346e ada.strings.fixed%s
+D a-strmap.ads		20180524051736 e8bb714a ada.strings.maps%s
+D a-tags.ads		20180524051738 491b781d ada.tags%s
+D a-textio.ads		20180524051738 881db35a ada.text_io%s
+D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20180524051736 5ab55268 interfaces%s
+D i-c.ads		20180524051736 5421119b interfaces.c%s
+D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
+D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
+D nt_console.ads	20190111192222 c4329dc5 nt_console%s
+D skrzyzowanie.adb	20190111220454 fe204d72 skrzyzowanie%b
+D system.ads		20180524051738 32a08138 system%s
+D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
+D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
+D s-exctab.ads		20180524051738 54135002 system.exception_table%s
+D s-ficobl.ads		20180524051738 078245e4 system.file_control_block%s
+D s-multip.ads		20180524051736 38ac9f73 system.multiprocessors%s
+D s-osinte.ads		20180524051738 2e5b26a9 system.os_interface%s
+D s-parame.ads		20180524051738 48ec542b system.parameters%s
+D s-secsta.ads		20180524051738 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20180524051736 a7318a92 system.soft_links%s
+D s-stache.ads		20180524051738 a37c21ec system.stack_checking%s
+D s-stausa.ads		20180524051736 017a0a05 system.stack_usage%s
+D s-stalib.ads		20180524051738 09bd3940 system.standard_library%s
+D s-stoele.ads		20180524051738 2dc34a04 system.storage_elements%s
+D s-tasinf.ads		20180524051738 601f6b72 system.task_info%s
+D s-taspri.ads		20180524051738 6c1d93d4 system.task_primitives%s
+D s-taprop.ads		20180524051738 1dd2e1b6 system.task_primitives.operations%s
+D s-taskin.ads		20180524051738 1d8c1ccb system.tasking%s
+D s-tassta.ads		20180524051738 cca55c94 system.tasking.stages%s
+D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
+D s-win32.ads		20180524051736 b7f96285 system.win32%s
+X 1 ada.ads
+16K9*Ada 20e8 22|2r6 2r35 3r6 3r35 4r6 4r35
+X 4 a-charac.ads
+16K13*Characters 18e19 22|4r10 4r39
+X 5 a-chahan.ads
+36K24*Handling 159e28 22|4w21 4r50
+X 11 a-string.ads
+16K13*Strings 35e16 22|3r10 3r39
+X 12 a-strfix.ads
+18K21*Fixed 251e22 22|3w18 3r47
+X 15 a-textio.ads
+49K13*Text_IO 471e16 22|2w10 2r39
+223U14*Get_Immediate 22|381s7
+242U14*Put 22|43s7 45s7 47s7 49s7 51s7 53s7 55s7 57s7 59s7 61s7 63s7 65s7
+. 67s7 69s7 71s7 73s7 75s7 77s7 79s7 81s7 83s7 85s7 87s7 91s7 93s7 95s7 97s7
+. 99s7 101s7 103s7 105s7 107s7 109s7 111s7 113s7 115s7 117s7 119s7 121s7
+. 123s7 125s7 127s7 129s7 131s7 134s7 136s7 138s7 140s7 142s7 144s7 146s7
+. 148s7 150s7 152s7 154s7 156s7 158s7 160s7 162s7 164s7 166s7 168s7 170s7
+. 172s7 174s7 178s7 180s7 182s7 184s7 186s7 188s7 190s7 192s7 194s7 196s7
+. 198s7 200s7 202s7 204s7 206s7 208s7 210s7 212s7 214s7 216s7 218s7 222s7
+. 224s7 226s7 228s7 230s7 232s7 234s7 236s7 238s7 240s7 242s7 246s7 248s7
+. 250s7 252s7 254s7 256s7 258s7 260s7 262s7 264s7 266s7 270s7 272s7 274s7
+. 276s7 278s7 280s7 282s7 284s7 286s7 288s7 290s7 294s7 296s7 298s7 300s7
+. 302s7 304s7 306s7 308s7 310s7 312s7 314s7 328s15 330s15 339s15 341s15 358s16
+. 360s16 368s16 370s16
+X 21 nt_console.ads
+25K9*NT_Console 228e15 22|1w6 1r35
+35n7*Black{34E9} 22|40r23
+37n30*White{34E9} 22|39r21 41r23
+196U14*Goto_XY 22|42s7 44s7 46s7 48s7 50s7 52s7 54s7 56s7 58s7 60s7 62s7
+. 64s7 66s7 68s7 70s7 72s7 74s7 76s7 78s7 80s7 82s7 84s7 86s7 90s7 92s7 94s7
+. 96s7 98s7 100s7 102s7 104s7 106s7 108s7 110s7 112s7 114s7 116s7 118s7 120s7
+. 122s7 124s7 126s7 128s7 130s7 133s7 135s7 137s7 139s7 141s7 143s7 145s7
+. 147s7 149s7 151s7 153s7 155s7 157s7 159s7 161s7 163s7 165s7 167s7 169s7
+. 171s7 173s7 177s7 179s7 181s7 183s7 185s7 187s7 189s7 191s7 193s7 195s7
+. 197s7 199s7 201s7 203s7 205s7 207s7 209s7 211s7 213s7 215s7 217s7 221s7
+. 223s7 225s7 227s7 229s7 231s7 233s7 235s7 237s7 239s7 241s7 245s7 247s7
+. 249s7 251s7 253s7 255s7 257s7 259s7 261s7 263s7 265s7 269s7 271s7 273s7
+. 275s7 277s7 279s7 281s7 283s7 285s7 287s7 289s7 293s7 295s7 297s7 299s7
+. 301s7 303s7 305s7 307s7 309s7 311s7 313s7 327s15 329s15 338s15 340s15 357s16
+. 359s16 367s16 369s16
+207U14*Set_Foreground 22|40s7
+208U14*Set_Background 22|41s7
+214U14*Clear_Screen 22|39s7
+X 22 skrzyzowanie.adb
+6U11*Skrzyzowanie 6b11 386l5 386t17
+7b4 swiatlo{boolean} 325r16 325r32 336r16 336r32 355r20 355r32 365r20 365r32
+. 383m10 383r25
+9R9 samochodPrawo 12e14 30r36
+10i7 X{integer} 325r47 325r61 326m18 326r26 327r26 329r26
+11i7 Y{integer} 327r34 329r32
+14R9 samochodLewo 17e14 31r35
+15i7 X{integer} 336r47 336r61 337m19 337r27 338r26 340r26
+16i7 Y{integer} 338r34 340r32
+19R9 samochodGora 22e14 32r35
+20i7 X{integer} 357r27 359r27
+21i7 Y{integer} 355r47 355r60 356m19 356r27 357r33 359r33
+24R9 samochodDol 27e14 33r34
+25i7 X{integer} 367r27 369r27
+26i7 Y{integer} 365r47 365r61 366m19 366r27 367r33 369r33
+30a4 samochodyPrawo(9R9) 324m20 324r20
+31a4 samochodyLewo(14R9) 335m20 335r20
+32a4 samochodyGora(19R9) 354m20 354r20
+33a4 samochodyDol(24R9) 364m20 364r20
+37U11 rysujSkrzyzowanie 37b11 316l8 316t25 379s4
+318t8 samochodyPoziomo 319b16 346l10 346t26
+324r14 El=324:20{9R9} 325r44 325r58 326r15 326r23 327r23 327r31 329r23 329r29
+335r14 El=335:20{14R9} 336r44 336r58 337r16 337r24 338r23 338r31 340r23 340r29
+348t9 samochodyPionowo 349b14 375l5 375t21
+354r14 El=354:20{19R9} 355r44 355r57 356r16 356r24 357r24 357r30 359r24 359r30
+364r14 El=364:20{24R9} 365r44 365r58 366r16 366r24 367r24 367r30 369r24 369r30
+377e1 Zn{character} 381m21 382r10
+X 34 s-stausa.ads
+203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
+268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
+

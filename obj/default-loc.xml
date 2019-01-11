@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Locations >
+  <Project>
+    <vfs_file>D:\Programy\ada\skrzyzowanie\default.gpr</vfs_file>
+    <file_marker column=" 31" line=" 37" >
+      <vfs_project />
+      <vfs_file>D:\Programy\ada\src\demo.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 172" >
+      <vfs_project />
+      <vfs_file>D:\Programy\ada\src\nt_console.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 11" line=" 318" >
+      <vfs_project />
+      <vfs_file>D:\Programy\ada\src\demo.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 23" line=" 323" >
+      <vfs_project />
+      <vfs_file>D:\Programy\ada\src\demo.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 39" line=" 322" >
+      <vfs_project />
+      <vfs_file>D:\Programy\ada\src\demo.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project />
+      <vfs_file>D:\Programy\ada\skrzyzowanie\src\skrzyzowanie.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>D:\Programy\ada\skrzyzowanie\default.gpr</vfs_project>
+      <vfs_file>D:\Programy\ada\skrzyzowanie\src\skrzyzowanie.adb</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 1" line=" 1" >
+      <vfs_project>D:\Programy\ada\skrzyzowanie\default.gpr</vfs_project>
+      <vfs_file>D:\Programy\ada\skrzyzowanie\src\skrzyzowanie.adb</vfs_file>
+    </file_marker>
+  </Project>
+</Locations>

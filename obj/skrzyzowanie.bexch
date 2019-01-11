@@ -1,0 +1,24 @@
+[GENERATED OBJECT FILE]
+b__skrzyzowanie.o
+[PROJECT FILES]
+D:\Programy\ada\skrzyzowanie\default.gpr
+20190111220106
+[BOUND OBJECT FILES]
+D:\Programy\ada\skrzyzowanie\obj\nt_console.o
+D:\Programy\ada\skrzyzowanie\obj\skrzyzowanie.o
+[GENERATED SOURCE FILES]
+b__skrzyzowanie.ads
+b__skrzyzowanie.adb
+b__skrzyzowanie.ali
+[RESULTING OPTIONS]
+-LD:\Programy\ada\skrzyzowanie\obj\
+-LD:\Programy\ada\skrzyzowanie\obj\
+-LC:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/
+-static
+-static-libgcc
+-luser32
+C:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/libgnarl.a
+C:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/libgnat.a
+-Xlinker
+--stack=0x200000,0x1000
+-mthreads
