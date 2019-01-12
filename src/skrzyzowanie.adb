@@ -5,6 +5,8 @@ with Ada.Characters.Handling; use Ada.Characters.Handling;
 with Ada.Synchronous_Task_Control;
 use Ada.Synchronous_Task_Control;
 with Ada.Numerics.Discrete_Random;
+with Ada.Exceptions;
+use Ada.Exceptions;
 
 procedure Skrzyzowanie is
    type Rand_Range is range 1..30;
@@ -13,9 +15,9 @@ procedure Skrzyzowanie is
    wylaczonaSygnalizacja: Boolean := False with Atomic;
    swiatlo: Boolean := True with Atomic;
    predkosc: Duration := 0.15 with Atomic;
-   type KierunekPoruszania is (lewo, prawo, gora, dol);
-
+   koniec: Boolean := False with Atomic;
    rysowaniePoziom, rysowaniePion : Suspension_Object;
+   input: Character;
 
    type samochodPrawo is record
       X: Integer := 1;
@@ -50,7 +52,6 @@ procedure Skrzyzowanie is
    begin
       Rand_Int.Reset(seed);
       Num := Rand_Int.Random(seed);
-      --Put_Line(Rand_Range'Image(Num));
       len := Integer(Num);
       return len;
    end;
@@ -342,6 +343,22 @@ procedure Skrzyzowanie is
 
    end rysujSkrzyzowanie;
 
+   procedure randomizuj is
+   begin
+      for E of samochodyPrawo loop
+         E.X := E.X + randomInt;
+      end loop;
+      for E of samochodyLewo loop
+         E.X := E.X - randomInt;
+      end loop;
+      for E of samochodyGora loop
+         E.Y := E.Y - randomInt;
+      end loop;
+      for E of samochodyDol loop
+         E.Y := E.Y + randomInt;
+      end loop;
+   end randomizuj;
+
    task samochodyPoziomo;
    task body samochodyPoziomo is
    begin
@@ -373,7 +390,7 @@ procedure Skrzyzowanie is
          end loop;
 
          for El of samochodyLewo loop
-             for e of samochodyLewo loop
+            for e of samochodyLewo loop
                if El.X /= e.X and El.X - 1 = e.X then
                   goto skok2;
                end if;
@@ -394,6 +411,7 @@ procedure Skrzyzowanie is
             <<skok2>>
          end loop;
          Set_True(rysowaniePion);
+         exit when koniec;
       end loop;
    end samochodyPoziomo;
 
@@ -404,7 +422,7 @@ procedure Skrzyzowanie is
          delay(predkosc);
          Suspend_Until_True(rysowaniePion);
          for El of samochodyDol loop
-             for e of samochodyDol loop
+            for e of samochodyDol loop
                if El.Y /= e.Y and El.Y + 1 = e.Y then
                   goto skok3;
                end if;
@@ -474,6 +492,7 @@ procedure Skrzyzowanie is
             <<skok4>>
          end loop;
          Set_True(rysowaniePoziom);
+         exit when koniec;
       end loop;
    end samochodyPionowo;
 
@@ -512,44 +531,37 @@ procedure Skrzyzowanie is
          Goto_XY(80, 5);
          Put('0');
          swiatlo := not swiatlo;
+         exit when koniec;
       end loop;
+   exception
+      when E: others =>
+         Put_Line("Error: licznik");
+         Put_Line(Exception_Name (E) & ": " & Exception_Message (E));
    end licznik;
 
-   procedure randomizuj is
-   begin
-      for E of samochodyPrawo loop
-         E.X := E.X + randomInt;
-      end loop;
-      for E of samochodyLewo loop
-         E.X := E.X - randomInt;
-      end loop;
-      for E of samochodyGora loop
-         E.Y := E.Y - randomInt;
-      end loop;
-      for E of samochodyDol loop
-         E.Y := E.Y + randomInt;
-      end loop;
-   end randomizuj;
-
-   Zn: Character;
 begin
    Set_True(rysowaniePion);
    rysujSkrzyzowanie;
    randomizuj;
-
    loop
-      Get_Immediate(Zn);
-      if Zn in 'q' | 'Q' then
+      Get_Immediate(input);
+      if input in 'q' | 'Q' then
          swiatlo := not swiatlo;
       end if;
-      if Zn in 'a' | 'A' then
+      if input in 'a' | 'A' then
          predkosc := predkosc - 0.01;
       end if;
-      if Zn in 'b' | 'B' then
+      if input in 'b' | 'B' then
          predkosc := predkosc + 0.01;
       end if;
-      if Zn in 'c' | 'C' then
+      if input in 'c' | 'C' then
          wylaczonaSygnalizacja := not wylaczonaSygnalizacja;
       end if;
+      exit when input in 'x' | 'X';
    end loop;
+   koniec := True;
+exception
+   when E: others =>
+      Put_Line("Error: Watek glowny");
+      Put_Line(Exception_Name (E) & ": " & Exception_Message (E));
 end Skrzyzowanie;
