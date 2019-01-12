@@ -13,7 +13,7 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_ELABORATION_CODE
 RV SPARK_05
 
-U nt_console%b		nt_console.adb		5e42de78 OO PK
+U nt_console%b		nt_console.adb		006dadc7 OO PK
 Z ada.exceptions%s	a-except.adb		a-except.ali
 W interfaces%s		interfac.ads		interfac.ali
 Z system%s		system.ads		system.ali
@@ -21,13 +21,13 @@ Z system.exception_table%s  s-exctab.adb	s-exctab.ali
 Z system.standard_library%s  s-stalib.adb	s-stalib.ali
 L "-luser32"
 
-U nt_console%s		nt_console.ads		c4329dc5 EE NE OO PK
+U nt_console%s		nt_console.ads		9a1dee7a EE NE OO PK
 
 D ada.ads		20180524051736 76789da1 ada%s
 D a-except.ads		20180524051736 291912d5 ada.exceptions%s
 D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D interfac.ads		20180524051736 5ab55268 interfaces%s
-D nt_console.ads	20190111192222 c4329dc5 nt_console%s
+D nt_console.ads	20190111235950 9a1dee7a nt_console%s
 D nt_console.adb	19990608095440 c0c511d5 nt_console%b
 D system.ads		20180524051738 32a08138 system%s
 D s-exctab.ads		20180524051738 54135002 system.exception_table%s
@@ -41,8 +41,8 @@ X 4 interfac.ads
 74M9*Unsigned_32 6|48r23 49r23
 X 5 nt_console.ads
 25K9*NT_Console 228l5 228e15 6|29b14 347l5 347t15
-31I12*X_Pos{natural} 193r28 197r14 197r23 6|209r28 212r14 222r14 222r23
-32I12*Y_Pos{natural} 194r28 198r14 198r23 6|215r28 218r14 223r14 223r23
+31I12*X_Pos{integer} 193r28 197r14 197r23 6|209r28 212r14 222r14 222r23
+32I12*Y_Pos{integer} 194r28 198r14 198r23 6|215r28 218r14 223r14 223r23
 34E9*Color_Type 37e36 204r35 205r35 207r41 208r41 214r39 6|153r39 154r50
 . 242r35 248r35 254r41 265r41 280r39
 35n7*Black{34E9} 208r55 214r53 6|155r6 156r6 265r55 280r53

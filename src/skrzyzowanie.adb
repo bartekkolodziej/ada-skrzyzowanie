@@ -2,12 +2,17 @@ with NT_Console;              use NT_Console;
 with Ada.Text_IO;             use Ada.Text_IO;
 with Ada.Strings.Fixed;       use Ada.Strings.Fixed;
 with Ada.Characters.Handling; use Ada.Characters.Handling;
+with Ada.Synchronous_Task_Control;
+use Ada.Synchronous_Task_Control;
 
 procedure Skrzyzowanie is
    swiatlo: Boolean := True with Atomic;
+   type KierunekPoruszania is (lewo, prawo, gora, dol);
+
+   rysowaniePoziom, rysowaniePion : Suspension_Object;
 
    type samochodPrawo is record
-      X: Integer := 0;
+      X: Integer := 1;
       Y: Integer := 13;
    end record;
 
@@ -17,24 +22,24 @@ procedure Skrzyzowanie is
    end record;
 
    type samochodGora is record
-      X: Integer := 33;
-      Y: Integer := 0;
-   end record;
-
-   type samochodDol is record
       X: Integer := 47;
       Y: Integer := 30;
    end record;
 
-
-   samochodyPrawo: array (1..1) of samochodPrawo;
-   samochodyLewo: array (1..1) of samochodLewo;
-   samochodyGora: array (1..1) of samochodGora;
-   samochodyDol: array (1..1) of samochodDol;
-
+   type samochodDol is record
+      X: Integer := 33;
+      Y: Integer := 1;
+   end record;
 
 
-procedure rysujSkrzyzowanie is
+   samochodyPrawo: array (1..3) of samochodPrawo;
+   samochodyLewo: array (1..3) of samochodLewo;
+   samochodyGora: array (1..3) of samochodGora;
+   samochodyDol: array (1..3) of samochodDol;
+
+
+
+   procedure rysujSkrzyzowanie is
    begin
       Clear_Screen (White);
       Set_Foreground (Black);
@@ -43,6 +48,8 @@ procedure rysujSkrzyzowanie is
       Put ("Symulacja skrzyzowania");
       Goto_XY (60, 0);
       Put ("Press q to change light");
+      Goto_XY(60,5);
+      Put("Zmiana swiatla za:");
       Goto_XY(10, 10);
       Put("-");
       Goto_XY(11, 10);
@@ -315,43 +322,56 @@ procedure rysujSkrzyzowanie is
 
    end rysujSkrzyzowanie;
 
-  task samochodyPoziomo;
-     task body samochodyPoziomo is
-     begin
-        loop
-           delay(0.13);
+   task samochodyPoziomo;
+   task body samochodyPoziomo is
+   begin
+      loop
+         delay(0.13);
 
+         Suspend_Until_True(rysowaniePoziom);
          for El of samochodyPrawo loop
             if swiatlo or (not swiatlo and El.X < 28) or El.X > 30 then
-              El.X := El.X + 1;
-              Goto_XY(El.X-1, El.Y);
-              Put("  ");
-              Goto_XY(El.X, El.Y);
-              Put("->");
+               El.X := El.X + 1;
+               Goto_XY(El.X-1, El.Y);
+               Put("  ");
+               Goto_XY(El.X, El.Y);
+               Put(">");
             end if;
 
-           end loop;
+            if El.X > 70 then
+               Goto_XY(70, El.Y);
+               Put("     ");
+               El.X := 1;
+            end if;
+
+         end loop;
 
          for El of samochodyLewo loop
             if swiatlo or (not swiatlo and El.X > 52) or El.X < 48 then
                El.X := El.X - 1;
-              Goto_XY(El.X+1, El.Y);
-              Put("  ");
-              Goto_XY(El.X, El.Y);
-              Put("<-");
+               Goto_XY(El.X+1, El.Y);
+               Put("  ");
+               Goto_XY(El.X, El.Y);
+               Put("<");
             end if;
-           end loop;
 
-        end loop;
-     end samochodyPoziomo;
+            if El.X < 1 then
+               Goto_XY(0, El.Y);
+               Put("     ");
+               El.X := 70;
+            end if;
+         end loop;
+         Set_True(rysowaniePion);
+      end loop;
+   end samochodyPoziomo;
 
    task samochodyPionowo;
    task body samochodyPionowo is
    begin
       loop
-         delay(0.27);
-
-         for El of samochodyGora loop
+         delay(0.13);
+         Suspend_Until_True(rysowaniePion);
+         for El of samochodyDol loop
             if not swiatlo or (swiatlo and El.Y < 8) or El.Y > 12 then
                El.Y := El.Y + 1;
                Goto_XY(El.X, El.Y-1);
@@ -359,9 +379,15 @@ procedure rysujSkrzyzowanie is
                Goto_XY(El.X, El.Y);
                Put("V");
             end if;
+
+            if El.Y > 30 then
+               Goto_XY(El.X, 31);
+               Put("    ");
+               El.Y := 1;
+            end if;
          end loop;
 
-         for El of samochodyDol loop
+         for El of samochodyGora loop
             if not swiatlo or (swiatlo and El.Y > 22) or El.Y < 18 then
                El.Y := El.Y - 1;
                Goto_XY(El.X, El.Y+1);
@@ -369,13 +395,58 @@ procedure rysujSkrzyzowanie is
                Goto_XY(El.X, El.Y);
                Put("^");
             end if;
+
+            if El.Y < 1 then
+               Goto_XY(El.X, 0);
+               Put("     ");
+               El.Y := 30;
+            end if;
          end loop;
-
+         Set_True(rysowaniePoziom);
       end loop;
-end samochodyPionowo;
+   end samochodyPionowo;
 
-Zn: Character;
+   task licznik;
+   task body licznik is
+   begin
+      loop
+         Goto_XY(80, 5);
+         Put('9');
+         delay(1.0);
+         Goto_XY(80, 5);
+         Put('8');
+         delay(1.0);
+         Goto_XY(80, 5);
+         Put('7');
+         delay(1.0);
+         Goto_XY(80, 5);
+         Put('6');
+         delay(1.0);
+         Goto_XY(80, 5);
+         Goto_XY(80, 5);
+         Put('5');
+         delay(1.0);
+         Goto_XY(80, 5);
+         Put('4');
+         delay(1.0);
+         Goto_XY(80, 5);
+         Put('3');
+         delay(1.0);
+         Goto_XY(80, 5);
+         Put('2');
+         delay(1.0);
+         Goto_XY(80, 5);
+         Put('1');
+         delay(1.0);
+         Goto_XY(80, 5);
+         Put('0');
+         swiatlo := not swiatlo;
+      end loop;
+   end licznik;
+
+   Zn: Character;
 begin
+   Set_True(rysowaniePion);
    rysujSkrzyzowanie;
    loop
       Get_Immediate(Zn);

@@ -28,8 +28,8 @@ package NT_Console is
    -- TYPE DEFINITIONS --
    ----------------------
 
-   subtype X_Pos is Natural range 0 .. 100;
-   subtype Y_Pos is Natural range 0 .. 100;
+   subtype X_Pos is Integer range -100 .. 100;
+   subtype Y_Pos is Integer range -100 .. 100;
 
    type Color_Type is
      (Black, Blue, Green, Cyan, Red, Magenta, Brown, Gray,
