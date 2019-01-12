@@ -13,6 +13,8 @@ procedure Skrzyzowanie is
    wylaczonaSygnalizacja: Boolean := False with Atomic;
    swiatlo: Boolean := True with Atomic;
    predkosc: Duration := 0.15 with Atomic;
+   koniec: Boolean := False with Atomic;
+
    type KierunekPoruszania is (lewo, prawo, gora, dol);
 
    rysowaniePoziom, rysowaniePion : Suspension_Object;
@@ -550,6 +552,9 @@ begin
       end if;
       if Zn in 'c' | 'C' then
          wylaczonaSygnalizacja := not wylaczonaSygnalizacja;
+      end if;
+      if Zn in 'x' | 'X' then
+         koniec := not koniec;
       end if;
    end loop;
 end Skrzyzowanie;

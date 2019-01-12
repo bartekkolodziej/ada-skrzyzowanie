@@ -18,17 +18,20 @@ RV NO_STANDARD_STORAGE_POOLS
 RV NO_TASK_HIERARCHY
 RV NO_TASKING
 RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLICIT_LOOPS
 RV SPARK_05
 RV MAX_TASKS=1+
 
-U skrzyzowanie%b	skrzyzowanie.adb	1aa2fca9 NE OO SU
+U skrzyzowanie%b	skrzyzowanie.adb	1677dc2f NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 W ada.characters%s	a-charac.ads		a-charac.ali
 W ada.characters.handling%s  a-chahan.adb	a-chahan.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.discrete_random%s
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
 W ada.strings%s		a-string.ads		a-string.ali
 W ada.strings.fixed%s	a-strfix.adb		a-strfix.ali
@@ -36,8 +39,9 @@ W ada.synchronous_task_control%s  a-sytaco.adb	a-sytaco.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 W nt_console%s		nt_console.adb		nt_console.ali
-Z system%s		system.ads		system.ali
+W system%s		system.ads		system.ali
 Z system.parameters%s	s-parame.adb		s-parame.ali
+Z system.random_numbers%s  s-rannum.adb		s-rannum.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
 Z system.standard_library%s  s-stalib.adb	s-stalib.ali
 Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
@@ -53,6 +57,9 @@ D a-chlat1.ads		20180524051736 66457d31 ada.characters.latin_1%s
 D a-except.ads		20180524051736 291912d5 ada.exceptions%s
 D a-finali.ads		20180524051738 bf4f806b ada.finalization%s
 D a-ioexce.ads		20180524051736 e4a01f64 ada.io_exceptions%s
+D a-numeri.ads		20180524051736 bb51c45a ada.numerics%s
+D a-nudira.ads		20180524051736 71e55def ada.numerics.discrete_random%s
+D a-nudira.adb		20180524051736 72908cdb ada.numerics.discrete_random%b
 D a-reatim.ads		20180524051738 0240fc73 ada.real_time%s
 D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
 D a-string.ads		20180524051736 90ac6797 ada.strings%s
@@ -68,17 +75,21 @@ D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
 D nt_console.ads	20190111235950 9a1dee7a nt_console%s
-D skrzyzowanie.adb	20190112005430 d710d9fa skrzyzowanie%b
+D skrzyzowanie.adb	20190112024124 aa20a493 skrzyzowanie%b
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
 D s-exctab.ads		20180524051738 54135002 system.exception_table%s
 D s-ficobl.ads		20180524051738 078245e4 system.file_control_block%s
 D s-finroo.ads		20180524051738 4ff27390 system.finalization_root%s
+D s-imguns.ads		20180524051736 9ff43cf7 system.img_uns%s
 D s-memory.ads		20180524051736 597d6634 system.memory%s
 D s-multip.ads		20180524051736 38ac9f73 system.multiprocessors%s
 D s-osinte.ads		20180524051738 2e5b26a9 system.os_interface%s
 D s-parame.ads		20180524051738 48ec542b system.parameters%s
+D s-rannum.ads		20180524051736 99ade2f2 system.random_numbers%s
+D s-rannum.adb		20180524051738 20ba1217 system.random_numbers%b
+D s-ransee.ads		20180524051738 01a57b33 system.random_seed%s
 D s-secsta.ads		20180524051738 20bbe636 system.secondary_stack%s
 D s-soflin.ads		20180524051736 a7318a92 system.soft_links%s
 D s-stache.ads		20180524051738 a37c21ec system.stack_checking%s
@@ -93,109 +104,156 @@ D s-taskin.ads		20180524051738 1d8c1ccb system.tasking%s
 D s-tassta.ads		20180524051738 cca55c94 system.tasking.stages%s
 D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
+D s-valuns.ads		20180524051738 10a8ed3b system.val_uns%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 X 1 ada.ads
-16K9*Ada 20e8 25|2r6 2r35 3r6 3r35 4r6 4r35 5r6 6r5
+16K9*Ada 20e8 28|2r6 2r35 3r6 3r35 4r6 4r35 5r6 6r5 7r6 11r28
 X 4 a-charac.ads
-16K13*Characters 18e19 25|4r10 4r39
+16K13*Characters 18e19 28|4r10 4r39
 X 5 a-chahan.ads
-36K24*Handling 159e28 25|4w21 4r50
-X 12 a-string.ads
-16K13*Strings 35e16 25|3r10 3r39
-X 13 a-strfix.ads
-18K21*Fixed 251e22 25|3w18 3r47
-X 15 a-sytaco.ads
-41K13*Synchronous_Task_Control 94e33 25|5w10 6r9
-47R9*Suspension_Object<8|50R9> 85e14 25|12r37
-50U14*Set_True 25|364s10 405s10 449s4
-64U14*Suspend_Until_True 25|331s10 373s10
-X 18 a-textio.ads
-49K13*Text_IO 471e16 25|2w10 2r39
-208U14*Put 25|414s10 417s10 420s10 423s10 427s10 430s10 433s10 436s10 439s10
-. 442s10
-223U14*Get_Immediate 25|452s7
-242U14*Put 25|48s7 50s7 52s7 54s7 56s7 58s7 60s7 62s7 64s7 66s7 68s7 70s7
-. 72s7 74s7 76s7 78s7 80s7 82s7 84s7 86s7 88s7 90s7 92s7 94s7 98s7 100s7
-. 102s7 104s7 106s7 108s7 110s7 112s7 114s7 116s7 118s7 120s7 122s7 124s7
-. 126s7 128s7 130s7 132s7 134s7 136s7 138s7 141s7 143s7 145s7 147s7 149s7
-. 151s7 153s7 155s7 157s7 159s7 161s7 163s7 165s7 167s7 169s7 171s7 173s7
-. 175s7 177s7 179s7 181s7 185s7 187s7 189s7 191s7 193s7 195s7 197s7 199s7
-. 201s7 203s7 205s7 207s7 209s7 211s7 213s7 215s7 217s7 219s7 221s7 223s7
-. 225s7 229s7 231s7 233s7 235s7 237s7 239s7 241s7 243s7 245s7 247s7 249s7
-. 253s7 255s7 257s7 259s7 261s7 263s7 265s7 267s7 269s7 271s7 273s7 277s7
-. 279s7 281s7 283s7 285s7 287s7 289s7 291s7 293s7 295s7 297s7 301s7 303s7
-. 305s7 307s7 309s7 311s7 313s7 315s7 317s7 319s7 321s7 336s16 338s16 343s16
-. 353s16 355s16 360s16 378s16 380s16 385s16 394s16 396s16 401s16
-X 24 nt_console.ads
-25K9*NT_Console 228e15 25|1w6 1r35
-35n7*Black{34E9} 25|45r23
-37n30*White{34E9} 25|44r21 46r23
-196U14*Goto_XY 25|47s7 49s7 51s7 53s7 55s7 57s7 59s7 61s7 63s7 65s7 67s7
-. 69s7 71s7 73s7 75s7 77s7 79s7 81s7 83s7 85s7 87s7 89s7 91s7 93s7 97s7 99s7
-. 101s7 103s7 105s7 107s7 109s7 111s7 113s7 115s7 117s7 119s7 121s7 123s7
-. 125s7 127s7 129s7 131s7 133s7 135s7 137s7 140s7 142s7 144s7 146s7 148s7
-. 150s7 152s7 154s7 156s7 158s7 160s7 162s7 164s7 166s7 168s7 170s7 172s7
-. 174s7 176s7 178s7 180s7 184s7 186s7 188s7 190s7 192s7 194s7 196s7 198s7
-. 200s7 202s7 204s7 206s7 208s7 210s7 212s7 214s7 216s7 218s7 220s7 222s7
-. 224s7 228s7 230s7 232s7 234s7 236s7 238s7 240s7 242s7 244s7 246s7 248s7
-. 252s7 254s7 256s7 258s7 260s7 262s7 264s7 266s7 268s7 270s7 272s7 276s7
-. 278s7 280s7 282s7 284s7 286s7 288s7 290s7 292s7 294s7 296s7 300s7 302s7
-. 304s7 306s7 308s7 310s7 312s7 314s7 316s7 318s7 320s7 335s16 337s16 342s16
-. 352s16 354s16 359s16 377s16 379s16 384s16 393s16 395s16 400s16 413s10 416s10
-. 419s10 422s10 425s10 426s10 429s10 432s10 435s10 438s10 441s10
-207U14*Set_Foreground 25|45s7
-208U14*Set_Background 25|46s7
-214U14*Clear_Screen 25|44s7
-X 25 skrzyzowanie.adb
-8U11*Skrzyzowanie 8b11 457l5 457t17
-9b4 swiatlo{boolean} 333r16 333r32 350r16 350r32 375r20 375r32 391r20 391r32
-. 443m10 443r25 454m10 454r25
-10E9 KierunekPoruszania 10e55
-10n32 lewo{10E9}
-10n38 prawo{10E9}
-10n45 gora{10E9}
-10n51 dol{10E9}
-12r4 rysowaniePoziom{15|47R9} 331m29 331r29 405m19 405r19
-12r21 rysowaniePion{15|47R9} 364m19 364r19 373m29 373r29 449m13 449r13
-14R9 samochodPrawo 17e14 35r36
-15i7 X{integer} 333r47 333r61 334m19 334r27 335r27 337r27 341r19 344m19
-16i7 Y{integer} 335r35 337r33 342r31
-19R9 samochodLewo 22e14 36r35
-20i7 X{integer} 350r47 350r61 351m19 351r27 352r27 354r27 358r19 361m19
-21i7 Y{integer} 352r35 354r33 359r30
-24R9 samochodGora 27e14 37r35
-25i7 X{integer} 393r27 395r27 400r27
-26i7 Y{integer} 391r47 391r61 392m19 392r27 393r33 395r33 399r19 402m19
-29R9 samochodDol 32e14 38r34
-30i7 X{integer} 377r27 379r27 384r27
-31i7 Y{integer} 375r47 375r60 376m19 376r27 377r33 379r33 383r19 386m19
-35a4 samochodyPrawo(14R9) 332m20 332r20
-36a4 samochodyLewo(19R9) 349m20 349r20
-37a4 samochodyGora(24R9) 390m20 390r20
-38a4 samochodyDol(29R9) 374m20 374r20
-42U14 rysujSkrzyzowanie 42b14 323l8 323t25 450s4
-325t9 samochodyPoziomo 326b14 366l8 366t24
-332r14 El=332:20{14R9} 333r44 333r58 334r16 334r24 335r24 335r32 337r24 337r30
-. 341r16 342r28 344r16
-349r14 El=349:20{19R9} 350r44 350r58 351r16 351r24 352r24 352r32 354r24 354r30
-. 358r16 359r27 361r16
-368t9 samochodyPionowo 369b14 407l8 407t24
-374r14 El=374:20{29R9} 375r44 375r57 376r16 376r24 377r24 377r30 379r24 379r30
-. 383r16 384r24 386r16
-390r14 El=390:20{24R9} 391r44 391r58 392r16 392r24 393r24 393r30 395r24 395r30
-. 399r16 400r24 402r16
-409t9 licznik 410b14 445l8 445t15
-447e4 Zn{character} 452m21 453r10
-X 26 system.ads
+36K24*Handling 159e28 28|4w21 4r50
+X 10 a-numeri.ads
+16K13*Numerics 32e17 28|7r10 11r32
+X 11 a-nudira.ads
+44k22*Discrete_Random 75e33 28|7w19 11r41
+50R9 Generator<40|63R9> 28|48r23[11]
+52V13 Random{28|10I9} 28|52s23[11]
+55U14 Reset<40|100p14> 28|51s16[11]
+X 12 a-nudira.adb
+53V16 Random[40|83]{28|10I9} 41|392b13[28|11]
+X 15 a-string.ads
+16K13*Strings 35e16 28|3r10 3r39
+X 16 a-strfix.ads
+18K21*Fixed 251e22 28|3w18 3r47
+X 18 a-sytaco.ads
+41K13*Synchronous_Task_Control 94e33 28|5w10 6r9
+47R9*Suspension_Object<8|50R9> 85e14 28|18r37
+50U14*Set_True 28|396s10 476s10 536s4
+64U14*Suspend_Until_True 28|351s10 405s10
+X 21 a-textio.ads
+49K13*Text_IO 471e16 28|2w10 2r39
+208U14*Put 28|485s10 488s10 491s10 494s10 498s10 501s10 504s10 507s10 510s10
+. 513s10
+223U14*Get_Immediate 28|541s7
+242U14*Put 28|64s7 66s7 68s7 70s7 72s7 74s7 76s7 78s7 80s7 82s7 84s7 86s7
+. 88s7 90s7 92s7 94s7 96s7 98s7 100s7 102s7 104s7 106s7 108s7 110s7 112s7
+. 114s7 118s7 120s7 122s7 124s7 126s7 128s7 130s7 132s7 134s7 136s7 138s7
+. 140s7 142s7 144s7 146s7 148s7 150s7 152s7 154s7 156s7 158s7 161s7 163s7
+. 165s7 167s7 169s7 171s7 173s7 175s7 177s7 179s7 181s7 183s7 185s7 187s7
+. 189s7 191s7 193s7 195s7 197s7 199s7 201s7 205s7 207s7 209s7 211s7 213s7
+. 215s7 217s7 219s7 221s7 223s7 225s7 227s7 229s7 231s7 233s7 235s7 237s7
+. 239s7 241s7 243s7 245s7 249s7 251s7 253s7 255s7 257s7 259s7 261s7 263s7
+. 265s7 267s7 269s7 273s7 275s7 277s7 279s7 281s7 283s7 285s7 287s7 289s7
+. 291s7 293s7 297s7 299s7 301s7 303s7 305s7 307s7 309s7 311s7 313s7 315s7
+. 317s7 321s7 323s7 325s7 327s7 329s7 331s7 333s7 335s7 337s7 339s7 341s7
+. 362s16 364s16 369s16 384s16 386s16 391s16 428s16 430s16 435s16 464s16 466s16
+. 471s16
+X 23 interfac.ads
+74M9*Unsigned_32
+77M9*Unsigned_64
+X 27 nt_console.ads
+25K9*NT_Console 228e15 28|1w6 1r35
+35n7*Black{34E9} 28|61r23
+37n30*White{34E9} 28|60r21 62r23
+196U14*Goto_XY 28|63s7 65s7 67s7 69s7 71s7 73s7 75s7 77s7 79s7 81s7 83s7
+. 85s7 87s7 89s7 91s7 93s7 95s7 97s7 99s7 101s7 103s7 105s7 107s7 109s7 111s7
+. 113s7 117s7 119s7 121s7 123s7 125s7 127s7 129s7 131s7 133s7 135s7 137s7
+. 139s7 141s7 143s7 145s7 147s7 149s7 151s7 153s7 155s7 157s7 160s7 162s7
+. 164s7 166s7 168s7 170s7 172s7 174s7 176s7 178s7 180s7 182s7 184s7 186s7
+. 188s7 190s7 192s7 194s7 196s7 198s7 200s7 204s7 206s7 208s7 210s7 212s7
+. 214s7 216s7 218s7 220s7 222s7 224s7 226s7 228s7 230s7 232s7 234s7 236s7
+. 238s7 240s7 242s7 244s7 248s7 250s7 252s7 254s7 256s7 258s7 260s7 262s7
+. 264s7 266s7 268s7 272s7 274s7 276s7 278s7 280s7 282s7 284s7 286s7 288s7
+. 290s7 292s7 296s7 298s7 300s7 302s7 304s7 306s7 308s7 310s7 312s7 314s7
+. 316s7 320s7 322s7 324s7 326s7 328s7 330s7 332s7 334s7 336s7 338s7 340s7
+. 361s16 363s16 368s16 383s16 385s16 390s16 427s16 429s16 434s16 463s16 465s16
+. 470s16 484s10 487s10 490s10 493s10 496s10 497s10 500s10 503s10 506s10 509s10
+. 512s10
+207U14*Set_Foreground 28|61s7
+208U14*Set_Background 28|62s7
+214U14*Clear_Screen 28|60s7
+X 28 skrzyzowanie.adb
+9U11*Skrzyzowanie 9b11 555l5 555t17
+10I9 Rand_Range<short_short_integer> 11r57 49r13
+11K12 Rand_Int[11|44] 48r14 51r7 52r14
+13b4 wylaczonaSygnalizacja{boolean} 359r71 381r71 425r70 461r71 552m10 552r39
+14b4 swiatlo{boolean} 359r16 359r32 381r16 381r32 425r20 425r32 461r20 461r32
+. 514m10 514r25 543m10 543r25
+15o4 predkosc{duration} 349r16 404r16 546m10 546r22 549m10 549r22
+16E9 KierunekPoruszania 16e55
+16n32 lewo{16E9}
+16n38 prawo{16E9}
+16n45 gora{16E9}
+16n51 dol{16E9}
+18r4 rysowaniePoziom{18|47R9} 351m29 351r29 476m19 476r19
+18r21 rysowaniePion{18|47R9} 396m19 396r19 405m29 405r29 536m13 536r13
+20R9 samochodPrawo 23e14 41r37
+21i7 X{integer} 354r22 354r29 354r38 354r48 359r47 359r61 360m19 360r27 361r27
+. 363r27 367r19 370m19 414r48 414r66 449r48 449r66 521m12 521r19
+22i7 Y{integer} 361r35 363r33 368r31 414r32 449r32
+25R9 samochodLewo 28e14 42r36
+26i7 X{integer} 377r22 377r29 377r38 377r48 381r47 381r61 382m19 382r27 383r27
+. 385r27 389r19 392m19 420r48 420r66 455r48 455r66 524m12 524r19
+27i7 Y{integer} 383r35 385r33 390r30 420r32 455r32
+30R9 samochodGora 33e14 43r36
+31i7 X{integer} 449r42 449r56 455r42 455r56 463r27 465r27 470r27
+32i7 Y{integer} 443r22 443r29 443r38 443r48 449r22 455r22 461r47 461r61 462m19
+. 462r27 463r33 465r33 469r19 472m19 527m12 527r19
+35R9 samochodDol 38e14 44r35
+36i7 X{integer} 414r42 414r56 420r42 420r56 427r27 429r27 434r27
+37i7 Y{integer} 408r22 408r29 408r38 408r48 414r22 420r22 425r47 425r60 426m19
+. 426r27 427r33 429r33 433r19 436m19 530m12 530r19
+41a4 samochodyPrawo(20R9) 352m20 352r20 353r22 413r22 448r22 520m16 520r16
+42a4 samochodyLewo(25R9) 375m20 375r20 376r23 419r22 454r22 523m16 523r16
+43a4 samochodyGora(30R9) 441m20 441r20 442r22 526m16 526r16
+44a4 samochodyDol(35R9) 406m20 406r20 407r23 529m16 529r16
+46V13 randomInt{integer} 46b13 56t7 521s23 524s23 527s23 530s23
+47i7 len{integer} 54m7 55r14
+48r7 seed{11|50R9[11]} 51r22 52r30
+49i7 Num{10I9} 52m7 54r22
+58U14 rysujSkrzyzowanie 58b14 343l8 343t25 537s4
+345t9 samochodyPoziomo 346b14 398l8 398t24
+352r14 El=352:20{20R9} 354r19 354r35 359r44 359r58 360r16 360r24 361r24 361r32
+. 363r24 363r30 367r16 368r28 370r16
+353r17 e=353:22{20R9} 354r27 354r46
+372L15 skok1 355r24
+375r14 El=375:20{25R9} 377r19 377r35 381r44 381r58 382r16 382r24 383r24 383r32
+. 385r24 385r30 389r16 390r27 392r16
+376r18 e=376:23{25R9} 377r27 377r46
+394L15 skok2 378r24
+400t9 samochodyPionowo 401b14 478l8 478t24
+406r14 El=406:20{35R9} 408r19 408r35 414r19 414r39 414r53 420r19 420r39 420r53
+. 425r44 425r57 426r16 426r24 427r24 427r30 429r24 429r30 433r16 434r24 436r16
+407r18 e=407:23{35R9} 408r27 408r46
+413r17 e=413:22{20R9} 414r30 414r46 414r64
+419r17 e=419:22{25R9} 420r30 420r46 420r64
+438L15 skok3 409r24 415r24 421r24
+441r14 El=441:20{30R9} 443r19 443r35 449r19 449r39 449r53 455r19 455r39 455r53
+. 461r44 461r58 462r16 462r24 463r24 463r30 465r24 465r30 469r16 470r24 472r16
+442r17 e=442:22{30R9} 443r27 443r46
+448r17 e=448:22{20R9} 449r30 449r46 449r64
+454r17 e=454:22{25R9} 455r30 455r46 455r64
+474L15 skok4 444r24 450r24 456r24
+480t9 licznik 481b14 516l8 516t15
+518U14 randomizuj 518b14 532l8 532t18 538s4
+520r11 E=520:16{20R9} 521r10 521r17
+523r11 E=523:16{25R9} 524r10 524r17
+526r11 E=526:16{30R9} 527r10 527r17
+529r11 E=529:16{35R9} 530r10 530r17
+534e4 Zn{character} 541m21 542r10 545r10 548r10 551r10
+X 29 system.ads
 67M9*Address
-X 32 s-memory.ads
-53V13*Alloc{26|67M9} 103i<c,__gnat_malloc>22
+X 36 s-memory.ads
+53V13*Alloc{29|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22
-76V13*Realloc{26|67M9} 105i<c,__gnat_realloc>22
-X 39 s-stausa.ads
+76V13*Realloc{29|67M9} 105i<c,__gnat_realloc>22
+X 40 s-rannum.ads
+75V13*Random{23|74M9} 41|221i21
+76V13*Random{23|77M9} 41|221i21
+X 46 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
-X 41 s-stalib.adb
+X 48 s-stalib.adb
 93U14 Break_Start 94i<c,__gnat_break_start>22
 
