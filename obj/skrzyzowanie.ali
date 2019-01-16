@@ -25,7 +25,7 @@ RV NO_IMPLICIT_LOOPS
 RV SPARK_05
 RV MAX_TASKS=1+
 
-U skrzyzowanie%b	skrzyzowanie.adb	7884aee7 NE OO SU
+U skrzyzowanie%b	skrzyzowanie.adb	be0cd008 NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 W ada.characters%s	a-charac.ads		a-charac.ali
@@ -78,7 +78,7 @@ D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
 D nt_console.ads	20190111235950 9a1dee7a nt_console%s
-D skrzyzowanie.adb	20190112042230 edcac48e skrzyzowanie%b
+D skrzyzowanie.adb	20190116222044 2b42ba61 skrzyzowanie%b
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-conca3.ads		20180524051738 0b705ca5 system.concat_3%s
@@ -119,8 +119,8 @@ X 5 a-chahan.ads
 36K24*Handling 159e28 28|4w21 4r50
 X 7 a-except.ads
 54K13*Exceptions 349e19 28|8w10 9r9
-72V13*Exception_Name{string} 28|539s19 566s16
-94V13*Exception_Message{string} 28|539s47 566s44
+72V13*Exception_Name{string} 28|547s19 574s16
+94V13*Exception_Message{string} 28|547s47 574s44
 X 10 a-numeri.ads
 16K13*Numerics 32e17 28|7r10 13r32
 X 11 a-nudira.ads
@@ -137,13 +137,13 @@ X 16 a-strfix.ads
 X 18 a-sytaco.ads
 41K13*Synchronous_Task_Control 94e33 28|5w10 6r9
 47R9*Suspension_Object<8|50R9> 85e14 28|19r37
-50U14*Set_True 28|413s10 494s10 543s4
+50U14*Set_True 28|413s10 494s10 551s4
 64U14*Suspend_Until_True 28|368s10 423s10
 X 21 a-textio.ads
 49K13*Text_IO 471e16 28|2w10 2r39
-208U14*Put 28|504s10 507s10 510s10 513s10 517s10 520s10 523s10 526s10 529s10
-. 532s10
-223U14*Get_Immediate 28|547s7
+208U14*Put 28|504s10 508s10 512s10 516s10 520s10 524s10 528s10 532s10 536s10
+. 540s10
+223U14*Get_Immediate 28|555s7
 242U14*Put 28|65s7 67s7 69s7 71s7 73s7 75s7 77s7 79s7 81s7 83s7 85s7 87s7
 . 89s7 91s7 93s7 95s7 97s7 99s7 101s7 103s7 105s7 107s7 109s7 111s7 113s7
 . 115s7 119s7 121s7 123s7 125s7 127s7 129s7 131s7 133s7 135s7 137s7 139s7
@@ -157,7 +157,7 @@ X 21 a-textio.ads
 . 318s7 322s7 324s7 326s7 328s7 330s7 332s7 334s7 336s7 338s7 340s7 342s7
 . 379s16 381s16 386s16 401s16 403s16 408s16 446s16 448s16 453s16 482s16 484s16
 . 489s16
-263U14*Put_Line 28|538s10 539s10 565s7 566s7
+263U14*Put_Line 28|546s10 547s10 573s7 574s7
 X 23 interfac.ads
 74M9*Unsigned_32
 77M9*Unsigned_64
@@ -177,23 +177,24 @@ X 27 nt_console.ads
 . 289s7 291s7 293s7 297s7 299s7 301s7 303s7 305s7 307s7 309s7 311s7 313s7
 . 315s7 317s7 321s7 323s7 325s7 327s7 329s7 331s7 333s7 335s7 337s7 339s7
 . 341s7 378s16 380s16 385s16 400s16 402s16 407s16 445s16 447s16 452s16 481s16
-. 483s16 488s16 503s10 506s10 509s10 512s10 515s10 516s10 519s10 522s10 525s10
-. 528s10 531s10
+. 483s16 488s16 503s10 507s10 511s10 515s10 519s10 523s10 527s10 531s10 535s10
+. 539s10
 207U14*Set_Foreground 28|62s7
 208U14*Set_Background 28|63s7
 214U14*Clear_Screen 28|61s7
 X 28 skrzyzowanie.adb
-11U11*Skrzyzowanie 11b11 567l5 567t17
+11U11*Skrzyzowanie 11b11 575l5 575t17
 12I9 Rand_Range<short_short_integer> 13r57 51r13
 13K12 Rand_Int[11|44] 50r14 53r7 54r14
-15b4 wylaczonaSygnalizacja{boolean} 376r71 398r71 443r70 479r71 558m10 558r39
+15b4 wylaczonaSygnalizacja{boolean} 376r71 398r71 443r70 479r71 566m10 566r39
 16b4 swiatlo{boolean} 376r16 376r32 398r16 398r32 443r20 443r32 479r20 479r32
-. 533m10 533r25 549m10 549r25
-17o4 predkosc{duration} 366r16 422r16 552m10 552r22 555m10 555r22
-18b4 koniec{boolean} 414r20 495r20 534r20 562m4
+. 541m10 541r25 557m10 557r25
+17o4 predkosc{duration} 366r16 422r16 560m10 560r22 563m10 563r22
+18b4 koniec{boolean} 414r20 495r20 505r20 509r20 513r20 517r20 521r20 525r20
+. 529r20 533r20 537r20 542r20 570m4
 19r4 rysowaniePoziom{18|47R9} 368m29 368r29 494m19 494r19
-19r21 rysowaniePion{18|47R9} 413m19 413r19 423m29 423r29 543m13 543r13
-20e4 input{character} 547m21 548r10 551r10 554r10 557r10 560r17
+19r21 rysowaniePion{18|47R9} 413m19 413r19 423m29 423r29 551m13 551r13
+20e4 input{character} 555m21 556r10 559r10 562r10 565r10 568r17
 22R9 samochodPrawo 25e14 43r37
 23i7 X{integer} 349m12 349r19 371r22 371r29 371r38 371r48 376r47 376r61 377m19
 . 377r27 378r27 380r27 384r19 387m19 432r48 432r66 467r48 467r66
@@ -218,8 +219,8 @@ X 28 skrzyzowanie.adb
 49i7 len{integer} 55m7 56r14
 50r7 seed{11|50R9[13]} 53r22 54r30
 51i7 Num{12I9} 54m7 55r22
-59U14 rysujSkrzyzowanie 59b14 344l8 344t25 544s4
-346U14 randomizuj 346b14 360l8 360t18 545s4
+59U14 rysujSkrzyzowanie 59b14 344l8 344t25 552s4
+346U14 randomizuj 346b14 360l8 360t18 553s4
 348r11 E=348:16{22R9} 349r10 349r17
 351r11 E=351:16{27R9} 352r10 352r17
 354r11 E=354:16{32R9} 355r10 355r17
@@ -246,9 +247,9 @@ X 28 skrzyzowanie.adb
 466r17 e=466:22{22R9} 467r30 467r46 467r64
 472r17 e=472:22{27R9} 473r30 473r46 473r64
 492L15 skok4 462r24 468r24 474r24
-499t9 licznik 500b14 540l8 540t15
-537r12 E{7|63R9} 539r35 539r66
-564r9 E{7|63R9} 566r32 566r63
+499t9 licznik 500b14 548l8 548t15
+545r12 E{7|63R9} 547r35 547r66
+572r9 E{7|63R9} 574r32 574r63
 X 29 system.ads
 67M9*Address
 X 37 s-memory.ads
